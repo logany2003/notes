@@ -61,23 +61,36 @@ def average(image):
             pixmap[i,j] = (r, g, b)
     img.show()
 
-def sda(image):
-    img = Image.open(image)
+
+def right_flip(image):
+    img.show()
+    pixmap = img.load()
+    for i in range(img.size[0]//2):
+        for j in range(img.size[1]):
+            pixmap[i,j] =pixmap[img.size[0]-1-i, j]
+    img.show()
+
+def background_flip(image):
     img.show()
     pixmap = img.load()
     for i in range(img.size[0]):
-        for j in range(0,img.size[1],5):
-            r, g, b = pixmap[i,j]
-            255 - r = r
-            255 - g = g
-            255 - b = b
-            
-            pixmap[i,j] = (r, g, b)
+        for j in range(img.size[1]//2):
+            pixmap[i,j] = pixmap[img.size[0]-1-i, j]
     img.show()
-    
+
+def top_flip(image):
+    img.show()
+    pixmap = img.load()
+    for i in range(img.size[0]):
+        for j in range(img.size[1]//2):
+            pixmap[i,j] = pixmap[i, img.size[1]-1-j]
+    img.show()
+
 if __name__ == "__main__":
+    img = Image.open("beach.jpg")
     #deep_fried("Kermit.jpg")
     #swap("beach.jpg")
     #shaded("Chicken.jpg")
     #average("beach.jpg")
-    pass
+    #left_flip("beach.jpg")
+    top_flip("beach.jpg")
